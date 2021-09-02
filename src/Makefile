@@ -76,7 +76,7 @@ RAYLIB_MODULE_MODELS ?= TRUE
 RAYLIB_MODULE_RAYGUI ?= FALSE
 RAYLIB_MODULE_PHYSAC ?= FALSE
 
-RAYLIB_MODULE_RAYGUI_PATH ?= $(RAYLIB_SRC_PATH)/../../raygui/src
+RAYLIB_MODULE_RAYGUI_PATH ?= $(RAYLIB_SRC_PATH)/src
 RAYLIB_MODULE_PHYSAC_PATH ?= $(RAYLIB_SRC_PATH)/extras
 
 # Use external GLFW library instead of rglfw module
@@ -591,7 +591,7 @@ raudio.o : raudio.c raylib.h
 
 # Compile raygui module
 # NOTE: raygui header should be distributed with raylib.h
-raygui.o : raygui.c raygui.h gui_textbox_extended.h ricons.h
+raygui.o : raygui.c raygui.h gui_textbox_extended.h
 	$(CC) -c $< $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM) -DRAYGUI_IMPLEMENTATION
 raygui.c:
 	echo '#define RAYGUI_IMPLEMENTATION' > raygui.c
@@ -651,6 +651,7 @@ ifeq ($(ROOT),root)
 		cp --update raylib.h $(RAYLIB_H_INSTALL_PATH)/raylib.h
 		cp --update raymath.h $(RAYLIB_H_INSTALL_PATH)/raymath.h
 		cp --update rlgl.h $(RAYLIB_H_INSTALL_PATH)/rlgl.h
+		cp --update raygui.h $(RAYLIB_H_INSTALL_PATH)/raygui.h
 		cp --update extras/physac.h $(RAYLIB_H_INSTALL_PATH)/physac.h
 		@echo "raylib development files installed/updated!"
     else
